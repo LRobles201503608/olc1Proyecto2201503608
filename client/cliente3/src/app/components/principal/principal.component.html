@@ -1,0 +1,153 @@
+<div class="container-fluid">
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>
+                        Entrada C#
+                    </h3>
+                </div>
+            </div>
+            <div class ="row">
+              <div class="col-md-12">
+                <div id = "pestanias">
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a  class="nav-link active" data-toggle="tab" href="#translate">Traductor</a>
+                    </li>
+                  </ul>
+                  <section>
+                    <div id="myTabContent" class="tab-content">
+                      <div class="tab-pane fade active show" id="translate">
+                        <div class="form-group">
+                          <textarea name="Descripcion" placeholder="Codigo C#" rows=3 class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <button type="button" class="btn btn-primary" onclick="">ANALIZAR</button>
+                        </div>
+                        <div class="form-group">
+                          <textarea name="Descripcion" placeholder="Codigo Python" rows=3 class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary" (click)="Aprueba()">EJECUTA EL ARCHIVO DE PRUEBA</button>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+              </div>
+            </div>
+        </div>
+          <div class="card-body">
+            <div class ="row">
+              <div class="col-md-12">
+                <div id = "pestanias">
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a  class="nav-link active" data-toggle="tab" href="#translate">HTML->JSON</a>
+                    </li>
+                  </ul>
+                  <section>
+                    <div id="myTabContent" class="tab-content">
+                      <div class="tab-pane fade active show" id="translate">
+                        <div class="form-group">
+                          <textarea name="Descripcion" placeholder="HTML" rows=3 class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <button type="button" class="btn btn-primary" onclick="">CONVERTIR</button>
+                        </div>
+                        <div class="form-group">
+                          <textarea name="Descripcion" placeholder="JSON" rows=3 class="form-control"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+              </div>
+            </div>
+            </div>>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var e = ace.edit("editor");
+        e.getSession().setMode("ace/mode/csharp");
+    </script>
+    <div class="row">
+        <br>
+        <br><br>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Output:</h2>
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group" role="group">
+
+                <button class="btn btn-secondary" type="button">
+                    REPORTE HTML
+                </button>
+              </div>
+              <div class="btn-group" role="group">
+                <button class="btn btn-secondary" type="button">
+                    HTML -> JSON
+                </button>
+            </div>
+
+          <div class="btn-group" role="group">
+
+            <button type="button" class="btn btn-primary">AST</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary">Errores</button>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="json"></div>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+        <br><br><br><br><br>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>
+                    Reportes <small>Tabla de Errores</small>
+                </h2>
+            </div>
+        </div>
+        <div class="col-md-12">
+
+
+                <br>
+                <br>
+
+                <table class="table table-striped table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Token</th>
+                            <th scope="col">Tipo de Error</th>
+                            <th scope="col">Fila</th>
+                            <th scope="col">Columna</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_errores">
+
+                    </tbody>
+                </table>
+
+
+        </div>
+    <div class="row">
+        <br>
+        <br><br><br><br><br>
+    </div>
+</div>

@@ -98,17 +98,19 @@
 %left POT MOD
 %right NOT
 %left UMENOS
-%start inicio
+%start s
 
 %% /* Definición de la gramática */
 
 s
-    : inicio EOF {return $1;}
+    : inicio EOF {
+        return $1;
+        }
 ;
 
 inicio
     : clase {
-		$$ = API.astArchivo ("", $1);
+		$$ = API.astArchivo ($1);
 	}
 ;
 

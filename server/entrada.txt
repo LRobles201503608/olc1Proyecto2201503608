@@ -1,0 +1,3 @@
+class prueba{
+    int a =0;
+}
