@@ -86,6 +86,8 @@
 	const TIPO 		= require('./ast').TIPO;
 	const API	= require('./ast').API;
 	const LERRORES	= require('./ast').LERRORES;
+    var tr = "";
+    var imprimir = "";
 %}
 
 
@@ -110,7 +112,7 @@ s
 
 inicio
     : clase {
-		$$ = API.astArchivo ($1);
+		$$ = API.astArchivo ($1,tr,imprimir);
 	}
 ;
 
@@ -124,7 +126,7 @@ l_ins
 ;
 
 ins
-    : variable PYCOMA {$$=$1;}
+    : variable PYCOMA {$$=$1; tr+=";";}
     | metodos_funciones {$$=$1;}
 ;    
 
@@ -138,22 +140,22 @@ declaracion
 ;
 
 ldeclaracion
-    : ldeclaracion COMA id2 {$1.push($3); $$ = $1;}
+    : ldeclaracion COMA id2 {$1.push($3); $$ = $1; tr+=",";}
     | id {$$ = API.astListaDecla($1);}
 ;
 
 id
-    : tipo IDENTIFICADOR IGUAL expresion { $$ = API.astDeclaracion( $1 , $2 , $4 ); }
-    | tipo IDENTIFICADOR {$$ = API.astDeclaNoVal($1,[$2]);}
+    : tipo IDENTIFICADOR IGUAL expresion { $$ = API.astDeclaracion( $1 , $2 , $4 ); tr+=" var "+$2+"= "+$4;}
+    | tipo IDENTIFICADOR {$$ = API.astDeclaNoVal($1,[$2]); tr+=" var "+$2;}
 ;
 
 id2
-    : IDENTIFICADOR IGUAL expresion {$$ = API.astAsignacion($1,$3)}
-    | IDENTIFICADOR {$$ = API.astIden($1);}
+    : IDENTIFICADOR IGUAL expresion {$$ = API.astAsignacion($1,$3); tr+=$1+" = ";}
+    | IDENTIFICADOR {$$ = API.astIden($1); tr+=$1}
 ;
 
 asignacion
-    : IDENTIFICADOR IGUAL expresion {$$ = API.astAsignacion($1,$3)}
+    : IDENTIFICADOR IGUAL expresion {$$ = API.astAsignacion($1,$3);tr+=$1+"=";}
     | actualizar {$$=$1;}
 ;
 
@@ -168,31 +170,31 @@ tipo
 ;
 
 actualizar
-    : IDENTIFICADOR INCREMENTO {$$=astIncreDecre($1,$2);}
-    | IDENTIFICADOR DECREMENTO {$$=astIncreDecre($1,$2);}
+    : IDENTIFICADOR INCREMENTO {$$=astIncreDecre($1,$2); tr+=$1+"++";}
+    | IDENTIFICADOR DECREMENTO {$$=astIncreDecre($1,$2); tr+=$1+"--";}
     | error {$$ = LERRORES.astErroresS(RECOPILACION_ERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
 ;
 
 expresion
-    : MENOS expresion %prec UMENOS {$$ = API.expresionU($2, OPERACION.NEGATIVO);}
-    | ENTERO {$$ = API.nuevoValor(Number($1), TIPO.ENTERO);}
-    | CHAR {$$ = API.nuevoValor($1, TIPO.CARACTER);}
-    | TRUE {$$ = API.nuevoValor($1, TIPO.BOOLEANO);}
-    | FALSE {$$ = API.nuevoValor($1, TIPO.BOOLEANO);}
-    | DECIMAL {$$ = API.nuevoValor(Number($1), TIPO.DOUBLE);}
-    | CADENA {$$ = API.nuevoValor($1, TIPO.STRING);}
-    | IDENTIFICADOR {$$ = API.nuevoValor($1, TIPO.IDENTIFICADOR);}
+    : MENOS expresion %prec UMENOS {$$ = API.expresionU($2, OPERACION.NEGATIVO); tr+="-";}
+    | ENTERO {$$ = API.nuevoValor(Number($1), TIPO.ENTERO); tr+=$1;}
+    | CHAR {$$ = API.nuevoValor($1, TIPO.CARACTER); tr+=$1;}
+    | TRUE {$$ = API.nuevoValor($1, TIPO.BOOLEANO); tr+=$1;}
+    | FALSE {$$ = API.nuevoValor($1, TIPO.BOOLEANO); tr+=$1;}
+    | DECIMAL {$$ = API.nuevoValor(Number($1), TIPO.DOUBLE); tr+=$1;}
+    | CADENA {$$ = API.nuevoValor($1, TIPO.STRING); tr+=$1;}
+    | IDENTIFICADOR {$$ = API.nuevoValor($1, TIPO.IDENTIFICADOR); tr+=$1;}
     | actualizar {$$=$1;}
-    | expresion MAS expresion {$$ = API.expresion($1, $3, OPERACION.SUMA);}
-    | expresion menos expresion {$$ = API.expresion($1, $3, OPERACION.RESTA);}
-    | expresion POR expresion {$$ = API.expresion($1, $3, OPERACION.MULTIPLICACION);}
-    | expresion DIVIDIDO expresion {$$ = API.expresion($1, $3, OPERACION.DIVISION);}
-    | expresion POT expresion {$$ = API.expresion($1, $3, OPERACION.POTENCIA);}
-    | expresion MOD expresion {$$ = API.expresion($1, $3, OPERACION.MODULO);}
-    | PARENTA expresion PARENTC {$$=$2;}
-    | expresion AND expresion {$$ = API.expresion($1, $3, OPERACION.AND);}
-    | expresion OR expresion {$$ = API.expresion($1, $3, OPERACION.OR);}
-    | NOT expresion {$$ = API.expresionU($2, OPERACION.NOT);}
+    | expresion MAS expresion {$$ = API.expresion($1, $3, OPERACION.SUMA); tr+="+";}
+    | expresion menos expresion {$$ = API.expresion($1, $3, OPERACION.RESTA); tr+="-";}
+    | expresion POR expresion {$$ = API.expresion($1, $3, OPERACION.MULTIPLICACION);tr+="*";}
+    | expresion DIVIDIDO expresion {$$ = API.expresion($1, $3, OPERACION.DIVISION);tr+="/";}
+    | expresion POT expresion {$$ = API.expresion($1, $3, OPERACION.POTENCIA); tr+="^";}
+    | expresion MOD expresion {$$ = API.expresion($1, $3, OPERACION.MODULO); tr+="%";}
+    | PARENTA expresion PARENTC {$$=$2; tr+="("+$2+")";}
+    | expresion AND expresion {$$ = API.expresion($1, $3, OPERACION.AND);tr+="and";}
+    | expresion OR expresion {$$ = API.expresion($1, $3, OPERACION.OR);tr+="or";}
+    | NOT expresion {$$ = API.expresionU($2, OPERACION.NOT);tr+="!";}
     | expresion DIF expresion {$$ = API.expresion($1, $3, OPERACION.NO_IGUAL);}
     | expresion MAYIGU expresion {$$ = API.expresion($1, $3, OPERACION.MAYOR_IGUAL);}
     | expresion MENIGU expresion {$$ = API.expresion($1, $3, OPERACION.MENOR_IGUAL);}
@@ -211,6 +213,8 @@ llamada_metodo
 metodos_funciones
     : tipo IDENTIFICADOR PARENTA parametros PARENTC LLA instrucciones_funciones LLC {$$ = API.astFuncion($1 , $2, $4, $7);}
     | tipo IDENTIFICADOR PARENTA parametros PARENTC LLA LLC {$$ = API.astFuncion($1 , $2, $4, "vacio");}
+    | tipo IDENTIFICADOR PARENTA PARENTC LLA instrucciones_funciones LLC {$$ = API.astFuncion($1 , $2, "sin parametros", $6);}
+    | tipo IDENTIFICADOR PARENTA PARENTC LLA LLC {$$ = API.astFuncion($1 , $2, "sin parametros", "vacio");}
     | error {$$ = LERRORES.astErroresS(RECOPILACION_ERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
 ;
 
@@ -221,7 +225,6 @@ parametros
 
 definicion_parametros
     : tipo IDENTIFICADOR {$$=API.astParametro( $1 , $2);}
-    | { }
     | error {$$ = LERRORES.astErroresS(RECOPILACION_ERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
 ;
 
@@ -309,5 +312,5 @@ retorno
 ;
 
 imprimir
-    : PRINT PARENTA CADENA PARENTC {$$=API.astConsoleWrite($3);}
+    : PRINT PARENTA CADENA PARENTC {$$=API.astConsoleWrite($3); imprimir+=$3+"\n";}
 ;

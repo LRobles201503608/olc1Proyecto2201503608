@@ -112,9 +112,11 @@ const LERRORES = {
 }
 
 const API ={
-    astArchivo : function(clases: any){
+    astArchivo : function(clases: any,traduccion:any,print:any){
         return{
-            clases :clases
+			clases :clases,
+			traduccion: traduccion,
+			print: print
         }
     },
     astClase : function(iden:any, content:any){
@@ -477,7 +479,7 @@ const API ={
 		}
 		var b = {
 			tipo: "Console Write",
-			sout: a
+			cwrite: a
 		}
 
 

@@ -86,11 +86,10 @@ class Server{
 function analisis(entrada:String) {
     try{
         let analizador = parser.parse(entrada.toString());
-
         let resp={
             status : "ANALISIS CORRECTO",
             json: analizador
-        }
+        };
         return resp;
     }catch(e){
         let error = {

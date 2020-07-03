@@ -1,3 +1,16 @@
 class prueba{
     int a =0;
+    void main(){
+        Console.Write("<html>");
+        Console.Write("<head>");
+        Console.Write("<title>hola</title>");
+        Console.Write("</head>");
+        int b=3;
+        Console.Write("<body>");
+        Console.Write("<h1>hola");
+        Console.Write("</h1>");
+        Console.Write("</body>");
+        Console.Write("</html>");
+    }
+
 }
