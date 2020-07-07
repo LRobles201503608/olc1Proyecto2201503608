@@ -1,6 +1,9 @@
 var e:any = [];
 var es:any = [];
 
+var v:any=[];
+var vs:any=[];
+
 const TIPO = {
 	ENTERO: 'int',
     iden: 'id',
@@ -55,6 +58,32 @@ const CASEDEF = {
 	DEFAULT: 'DEFAULT'
 };
 
+const LVariables ={
+	astPrintS: function (jso:any) {
+		var fs = require('fs');
+		try {
+
+			fs.writeFileSync('./build/out/listavariables.json', JSON.stringify(jso, null, 2));
+
+		} catch (er) {
+			console.error(er);
+			return;
+		};
+	},
+	astVariables: function (error:any) {
+		vs.push(error);
+		return vs;
+	},
+
+	astVariabless: function (e:any, f:any, c:any, valor:any) {
+		return {
+			tipo: e,
+			fila: f,
+			nombre: c,
+			valor : valor
+		}
+	}
+};
 
 const LERRORES = {
 
@@ -62,7 +91,7 @@ const LERRORES = {
 		var fs = require('fs');
 		try {
 
-			fs.writeFileSync('./out/errores.json', JSON.stringify(jso, null, 2));
+			fs.writeFileSync('./build/out/erroresl.json', JSON.stringify(jso, null, 2));
 
 		} catch (er) {
 			console.error(er);
@@ -74,7 +103,7 @@ const LERRORES = {
 		var fs = require('fs');
 		try {
 
-			fs.writeFileSync('./out/erroresS.json', JSON.stringify(jso, null, 2));
+			fs.writeFileSync('./build/out/erroresSin.json', JSON.stringify(jso, null, 2));
 
 		} catch (er) {
 			console.error(er);
@@ -494,3 +523,4 @@ module.exports.TIPO = TIPO;
 module.exports.API = API;
 module.exports.CASEDEF = CASEDEF;
 module.exports.LERRORES = LERRORES;
+module.exports.LVariables=LVariables;

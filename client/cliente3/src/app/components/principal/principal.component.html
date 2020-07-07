@@ -21,14 +21,15 @@
                     <div id="myTabContent" class="tab-content">
                       <div class="tab-pane fade active show" id="translate">
                         <div class="form-group">
-                          <textarea name="Descripcion" placeholder="Codigo C#" rows=3 class="form-control"></textarea>
-                          <textarea name="Descripcion" placeholder="Codigo Python" rows=3 class="form-control"></textarea>
+                          <textarea name="Descripcion" [(ngModel)]="Code.text" placeholder="Codigo C#" rows=10 class="form-control" ></textarea>
+                          <textarea name="Descripcion" placeholder="Codigo Python" rows=10 class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                          <button type="button" class="btn btn-primary" onclick="">ANALIZAR</button>
+                          <button type="button" class="btn btn-primary" (click)="ALectura()">ANALIZAR</button>
                         </div>
                         <div class="form-group">
-                          <textarea name="Descripcion" placeholder="JSON AST" rows=3 class="form-control">{{convertido}}</textarea>
+                          <textarea name="Descripcion" placeholder="JSON AST" rows=7 class="form-control">{{convertido}}</textarea>
+                          <ngx-json-viewer [json]="data"[expanded]="false"></ngx-json-viewer>
                         </div>
                         <div class="form-group">
                           <button class="btn btn-primary" (click)="Aprueba()">EJECUTA EL ARCHIVO DE PRUEBA</button>
@@ -37,7 +38,6 @@
                     </div>
                   </section>
                 </div>
-
               </div>
             </div>
         </div>
@@ -54,13 +54,13 @@
                     <div id="myTabContent" class="tab-content">
                       <div class="tab-pane fade active show" id="translate">
                         <div class="form-group">
-                          <textarea name="Descripcion" placeholder="HTML" rows=3 class="form-control">{{html2}}</textarea>
+                          <textarea name="Descripcion" [(ngModel)]="CodeH.text" placeholder="HTML" rows=10 class="form-control">{{html2}}</textarea>
                         </div>
                         <div class="form-group">
-                          <button type="button" class="btn btn-primary" (click)="AJSON()">CONVERTIR</button>
+                          <button type="button" class="btn btn-primary" (click)="AnalizarHTML()">CONVERTIR</button>
                         </div>
                         <div class="form-group">
-                          <textarea name="Descripcion" placeholder="JSON" rows=3 class="form-control"></textarea>
+                          <textarea name="Descripcion" placeholder="JSON" rows=10 class="form-control">{{convertido2}}</textarea>
                         </div>
                       </div>
                     </div>
@@ -78,58 +78,40 @@
         e.getSession().setMode("ace/mode/csharp");
     </script>
     <div class="row">
-        <br>
-        <br><br>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Output:</h2>
-        </div>
-        <div class="col-md-6">
-            <div class="btn-group" role="group">
-
-                <button class="btn btn-secondary" type="button">
-                    REPORTE HTML
-                </button>
-              </div>
-              <div class="btn-group" role="group">
-                <button class="btn btn-secondary" type="button">
-                    HTML -> JSON
-                </button>
-            </div>
-
-          <div class="btn-group" role="group">
-
-            <button type="button" class="btn btn-primary">AST</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary">Errores</button>
-          </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="json"></div>
-        </div>
-    </div>
-    <div class="row">
-        <br>
-        <br><br><br><br><br>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h2>
-                    Reportes <small>Tabla de Errores</small>
-                </h2>
+
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary" (click)="ShowErrors()">ERRORES</button>
+                  <button type="button" class="btn btn-primary" (click)="ShowVariables()">VARIABLES</button>
+                </div>
+
             </div>
         </div>
         <div class="col-md-12">
+          <h2>
+            Reportes Tabla de Varibles
+          </h2>
+          <table class="table table-striped table-dark">
+              <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Fila</th>
+                  </tr>
+              </thead>
+              <tbody id="variables">
 
-
-                <br>
-                <br>
-
+              </tbody>
+          </table>
+        </div>
+        <div class="col-md-12">
+          <h2>
+            Reportes Tabla de Errores
+          </h2>
                 <table class="table table-striped table-dark">
                     <thead class="thead-dark">
                         <tr>
@@ -140,15 +122,9 @@
                             <th scope="col">Columna</th>
                         </tr>
                     </thead>
-                    <tbody id="tbl_errores">
+                    <tbody id="errores">
 
                     </tbody>
                 </table>
-
-
-        </div>
-    <div class="row">
-        <br>
-        <br><br><br><br><br>
-    </div>
+          </div>
 </div>
