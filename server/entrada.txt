@@ -1,0 +1,60 @@
+class prueba{
+int y1 = 7.36+(5.12/2.00)-(3.16*2.00);
+int a =0;
+    void main(){
+        Console.Write('<html>');
+        Console.Write('<head>');
+        Console.Write('<title>hola</title>');
+        Console.Write('</head>');
+        int b=3;
+        Console.Write('<body style="background:Red">');
+        Console.Write('<div style = background:Yellow>');
+        Console.Write('<h1>hola');
+        Console.Write('</h1>');
+        Console.Write('</div>');
+        Console.Write('</body>');
+        Console.Write('</html>');
+        int j = prueba(0,"hola",2.0);
+        int w,a,b,c=0;
+    }
+
+    int prueba(int b,string f, double c){
+        int a=0;
+        if(true){
+            if(a>=0){
+                while(true){
+                    do{
+                        char z='a';
+                    }while(true);
+                }
+            }else{
+                if(a==0 && (a<5 || true)){
+                    switch(true){
+                        case 1:
+                            break;
+                        case 2:
+                        default:
+                        continue;
+                        return 0;
+                    }
+                }else if(a > 0){
+
+                }else{
+                    for(int a=0;a<9;a++){
+                        for(b=3;b>=3;b--){
+                            double j=0.0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    void jalo(){
+        for(int a=0;a>=0;a++){
+
+        }
+    }
+    int aa(){
+        
+    }
+}

@@ -1,0 +1,180 @@
+[
+  {
+    "tipo": "int",
+    "fila": 2,
+    "nombre": "y1",
+    "valor": {
+      "expresion1": {
+        "expresion1": {
+          "tipo": "double",
+          "valor": 7.36
+        },
+        "expresion2": {
+          "expresion1": {
+            "tipo": "double",
+            "valor": 5.12
+          },
+          "expresion2": {
+            "tipo": "double",
+            "valor": 2
+          },
+          "tipo": "division"
+        },
+        "tipo": "suma"
+      },
+      "expresion2": {
+        "expresion1": {
+          "tipo": "double",
+          "valor": 3.16
+        },
+        "expresion2": {
+          "tipo": "double",
+          "valor": 2
+        },
+        "tipo": "multiplicacion"
+      },
+      "tipo": "resta"
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 3,
+    "nombre": "a",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 9,
+    "nombre": "b",
+    "valor": {
+      "tipo": "double",
+      "valor": 3
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 17,
+    "nombre": "j",
+    "valor": {
+      "instruccion": {
+        "tipo": "LLAMADA FUNCION",
+        "funcion": {
+          "iden": "prueba",
+          "parametros": [
+            {
+              "tipo_dato": "",
+              "parametro": {
+                "tipo": "double",
+                "valor": 0
+              }
+            },
+            {
+              "tipo_dato": "",
+              "parametro": {
+                "tipo": "string",
+                "valor": "hola"
+              }
+            },
+            {
+              "tipo_dato": "",
+              "parametro": {
+                "tipo": "double",
+                "valor": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 18,
+    "nombre": "w",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "int",
+    "fila": 18,
+    "nombre": "a",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "int",
+    "fila": 18,
+    "nombre": "b",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "int",
+    "fila": 18,
+    "nombre": "c",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 21,
+    "nombre": "b",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "string",
+    "fila": 21,
+    "nombre": "f",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "double",
+    "fila": 21,
+    "nombre": "c",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "int",
+    "fila": 22,
+    "nombre": "a",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "char",
+    "fila": 27,
+    "nombre": "z",
+    "valor": "a"
+  },
+  {
+    "tipo": "int",
+    "fila": 43,
+    "nombre": "a",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "double",
+    "fila": 45,
+    "nombre": "j",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 53,
+    "nombre": "a",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  }
+]
