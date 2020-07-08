@@ -159,7 +159,7 @@ label
 ;
 
 input
-    : INPUTA contenidoinput INPUTC {$$=API2.astinput($2);}
+    : INPUTA {$$=API2.astinput("CAJA INPUT");}
 ;
 
 contenidoinput

@@ -1,20 +1,8 @@
 [
   {
-    "error": "-",
-    "fila": 31,
-    "columna": 87,
-    "tipo": "Sintactico"
-  },
-  {
-    "error": "-",
-    "fila": 34,
-    "columna": 87,
-    "tipo": "Sintactico"
-  },
-  {
     "error": ")",
-    "fila": 277,
-    "columna": 9,
+    "fila": 2,
+    "columna": 12,
     "tipo": "Sintactico"
   }
 ]

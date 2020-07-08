@@ -1,14 +1,32 @@
 [
   {
-    "error": "#",
-    "fila": 31,
-    "columna": 81,
+    "error": "$",
+    "fila": 1,
+    "columna": 0,
     "tipo": "Lexico"
   },
   {
-    "error": "#",
-    "fila": 34,
-    "columna": 81,
+    "error": "$",
+    "fila": 1,
+    "columna": 1,
+    "tipo": "Lexico"
+  },
+  {
+    "error": "$",
+    "fila": 1,
+    "columna": 2,
+    "tipo": "Lexico"
+  },
+  {
+    "error": "$",
+    "fila": 1,
+    "columna": 3,
+    "tipo": "Lexico"
+  },
+  {
+    "error": "$",
+    "fila": 1,
+    "columna": 4,
     "tipo": "Lexico"
   }
 ]
