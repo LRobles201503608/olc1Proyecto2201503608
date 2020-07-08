@@ -1,7 +1,27 @@
-class prueba{
+$$$$$ class prueba{
+string z=aa();
 int y1 = 7.36+(5.12/2.00)-(3.16*2.00);
-int a =0;
-    void main(){
+int a,b =0;
+
+    void main(){      
+        do{
+            char z='a';
+            int a=0;
+        }while(true);          
+        int y1 = 7.36+(5.12/2.00)-(3.16*2.00);
+        int a,b =0;
+        if(a>=0&&true){
+            int j=20;
+            j--;
+        }else if(true){
+
+        }else if((v>=0)){
+
+        }else if(a==9){
+            
+        }else{
+
+        }
         Console.Write('<html>');
         Console.Write('<head>');
         Console.Write('<title>hola</title>');
@@ -11,6 +31,8 @@ int a =0;
         Console.Write('<div style = background:Yellow>');
         Console.Write('<h1>hola');
         Console.Write('</h1>');
+        Console.Write('<input>');
+        Console.Write('<button>holamundo</button>');
         Console.Write('</div>');
         Console.Write('</body>');
         Console.Write('</html>');

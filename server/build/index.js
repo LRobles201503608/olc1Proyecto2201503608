@@ -142,6 +142,7 @@ function analisis(entrada) {
             status: "ANALISIS CORRECTO",
             json: analizador
         };
+        console.log(resp);
         return resp;
     }
     catch (e) {
@@ -149,6 +150,7 @@ function analisis(entrada) {
         let error = {
             json: "error"
         };
+        console.log(e);
         return error;
     }
 }

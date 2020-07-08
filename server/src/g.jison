@@ -73,12 +73,12 @@
 \'[^\']*\'				{ yytext = yytext.substr(1,yyleng-2); return 'CADENAH'; }
 [0-9]+("."[0-9]+)?\b  	return 'DECIMAL';
 [0-9]+\b				return 'ENTERO';
-\'[a-zA-Z]\'            return 'CHAR';
+\'[.]?\'                    return 'CHAR';
 (_?[a-zA-Z])[a-zA-Z0-9_]*	return 'IDENTIFICADOR';
 
 
 <<EOF>>				return 'EOF';
-.	                { $$ = LERRORES.astErrores(LERRORES.astError(yytext , yylloc.first_line , yylloc.first_column, "Lexico")); LERRORES.astPrint($$);}				
+.	                { $$ = LERRORES.astErrores(LERRORES.astError(yytext , yylloc.first_line , yylloc.first_column, "Lexico")); LERRORES.astPrint($$);$$="";}				
 
 /lex
 
@@ -91,6 +91,7 @@
     var tr = "";
     var imprimir = "";
     var tipov="";
+    var contentimpre="";
     if(imprimir==""){
 
     }else{
@@ -180,7 +181,7 @@ tipo
 actualizar
     : IDENTIFICADOR INCREMENTO {$$=API.astIncreDecre($1,$2); tr+=$1+"++";}
     | IDENTIFICADOR DECREMENTO {$$=API.astIncreDecre($1,$2); tr+=$1+"--";}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
+    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);$$="";}
 ;
 
 expresion
@@ -210,13 +211,13 @@ expresion
     | expresion MEN expresion {$$ = API.expresion($1, $3, OPERACION.MENOR);}
     | expresion IG expresion {$$ = API.expresion($1, $3, OPERACION.IGUAL_IGUAL);}
     | llamada_metodo {$$=$1;}
-    | CADENAH {$$=$1;}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
+    | CADENAH {$$ = API.nuevoValor($1, TIPO.CARACTER); contentimpre=$1;}
+    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);$$="";}
 ;
 
 llamada_metodo 
     : IDENTIFICADOR PARENTA parametros PARENTC {$$ = API.astLlamadaM($1 , $3);}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
+    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);$$="";}
 ;
 
 metodos_funciones
@@ -224,7 +225,6 @@ metodos_funciones
     | tipo IDENTIFICADOR PARENTA parametros PARENTC LLA LLC {$$ = API.astFuncion($1 , $2, $4, "vacio");}
     | tipo IDENTIFICADOR PARENTA PARENTC LLA instrucciones_funciones LLC {$$ = API.astFuncion($1 , $2, "sin parametros", $6);}
     | tipo IDENTIFICADOR PARENTA PARENTC LLA LLC {$$ = API.astFuncion($1 , $2, "sin parametros", "vacio");}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
 ;
 
 parametros 
@@ -235,7 +235,7 @@ parametros
 definicion_parametros
     : tipo IDENTIFICADOR {$$ = LVARIABLES.astVariables(LVARIABLES.astVariabless(tipov , @1.first_line, $2, "SIN VALOR")); LVARIABLES.astPrintS($$);$$=API.astParametro( $1 , $2);}
     | expresion {$$=API.astParametro( "" , $1);}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
+    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);$$="";}
 ;
 
 instrucciones_funciones
@@ -250,7 +250,7 @@ instru_f
     | CONTINUE PYCOMA {$$ = API.astContinue($1);}
     | retorno PYCOMA{$$=$1;}
     | imprimir PYCOMA{$$=$1;}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
+    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);$$="";}
 ;
 
 sentencias
@@ -259,7 +259,6 @@ sentencias
     | sentenciadowhile {$$=$1;}
     | sentenciaif {$$=$1;}
     | sentenciaswitch {$$=$1;}
-    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
 ;
 
 sentenciafor
@@ -277,7 +276,7 @@ sentenciadowhile
 ;
 
 sentenciaif 
-    : IF PARENTA expresion PARENTC cuerposentencia {$$ = API.astIf($3, $5);} 
+    : IF PARENTA expresion PARENTC cuerposentencia {$$ = API.astIfC(API.astIf($3, $5));} 
     | IF PARENTA expresion PARENTC cuerposentencia selse {$$=API.astElseC(API.astIf($3, $5),$6);}
     | IF PARENTA expresion PARENTC cuerposentencia selseif {$$ = API.astElseifC(API.astIf($3, $5) , $6);}
     | IF PARENTA expresion PARENTC cuerposentencia selseif selse {$$ = API.astIfCompleto(API.astIf($3, $5) , $6, $7);}
@@ -319,9 +318,16 @@ cuerposentencia
 
 retorno
     : RETURN expresion {$$ = API.astReturn(TIPO.ENTERO , $2);}
+    | RETURN {$$ = API.astReturn(TIPO.ENTERO , "vacio");}
 ;
 
 imprimir
     : PRINT PARENTA CADENAH PARENTC {$$=API.astConsoleWrite($3); imprimir+=$3+"\n";}
     | PRINT PARENTA expresion PARENTC {$$=API.astConsoleWrite($3); }
+;
+
+panico
+    : PYCOMA
+    | LLC
+    | error {$$ = LERRORES.astErroresS(LERRORES.astErrorS($1 , @1.first_line, @1.first_column, "Sintactico")); LERRORES.astPrintS($$);}
 ;

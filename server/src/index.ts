@@ -133,12 +133,14 @@ function analisis(entrada:String) {
             status : "ANALISIS CORRECTO",
             json: analizador
         };
+        console.log(resp);
         return resp;
     }catch(e){
         console.error(e);
         let error = {
             json : "error"
         }
+        console.log(e);
         return error;
     }
 }

@@ -1,7 +1,23 @@
 [
   {
-    "tipo": "int",
+    "tipo": "string",
     "fila": 2,
+    "nombre": "z",
+    "valor": {
+      "instruccion": {
+        "tipo": "LLAMADA FUNCION",
+        "funcion": {
+          "iden": "aa",
+          "parametros": [
+            ""
+          ]
+        }
+      }
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 3,
     "nombre": "y1",
     "valor": {
       "expresion1": {
@@ -38,7 +54,31 @@
   },
   {
     "tipo": "int",
-    "fila": 3,
+    "fila": 4,
+    "nombre": "a",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "int",
+    "fila": 4,
+    "nombre": "b",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "char",
+    "fila": 8,
+    "nombre": "z",
+    "valor": {
+      "tipo": "char",
+      "valor": "a"
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 9,
     "nombre": "a",
     "valor": {
       "tipo": "double",
@@ -47,7 +87,68 @@
   },
   {
     "tipo": "int",
-    "fila": 9,
+    "fila": 11,
+    "nombre": "y1",
+    "valor": {
+      "expresion1": {
+        "expresion1": {
+          "tipo": "double",
+          "valor": 7.36
+        },
+        "expresion2": {
+          "expresion1": {
+            "tipo": "double",
+            "valor": 5.12
+          },
+          "expresion2": {
+            "tipo": "double",
+            "valor": 2
+          },
+          "tipo": "division"
+        },
+        "tipo": "suma"
+      },
+      "expresion2": {
+        "expresion1": {
+          "tipo": "double",
+          "valor": 3.16
+        },
+        "expresion2": {
+          "tipo": "double",
+          "valor": 2
+        },
+        "tipo": "multiplicacion"
+      },
+      "tipo": "resta"
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 12,
+    "nombre": "a",
+    "valor": "SIN VALOR"
+  },
+  {
+    "tipo": "int",
+    "fila": 12,
+    "nombre": "b",
+    "valor": {
+      "tipo": "double",
+      "valor": 0
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 14,
+    "nombre": "j",
+    "valor": {
+      "tipo": "double",
+      "valor": 20
+    }
+  },
+  {
+    "tipo": "int",
+    "fila": 29,
     "nombre": "b",
     "valor": {
       "tipo": "double",
@@ -56,7 +157,7 @@
   },
   {
     "tipo": "int",
-    "fila": 17,
+    "fila": 39,
     "nombre": "j",
     "valor": {
       "instruccion": {
@@ -92,25 +193,25 @@
   },
   {
     "tipo": "int",
-    "fila": 18,
+    "fila": 40,
     "nombre": "w",
     "valor": "SIN VALOR"
   },
   {
     "tipo": "int",
-    "fila": 18,
+    "fila": 40,
     "nombre": "a",
     "valor": "SIN VALOR"
   },
   {
     "tipo": "int",
-    "fila": 18,
+    "fila": 40,
     "nombre": "b",
     "valor": "SIN VALOR"
   },
   {
     "tipo": "int",
-    "fila": 18,
+    "fila": 40,
     "nombre": "c",
     "valor": {
       "tipo": "double",
@@ -119,25 +220,25 @@
   },
   {
     "tipo": "int",
-    "fila": 21,
+    "fila": 43,
     "nombre": "b",
     "valor": "SIN VALOR"
   },
   {
     "tipo": "string",
-    "fila": 21,
+    "fila": 43,
     "nombre": "f",
     "valor": "SIN VALOR"
   },
   {
     "tipo": "double",
-    "fila": 21,
+    "fila": 43,
     "nombre": "c",
     "valor": "SIN VALOR"
   },
   {
     "tipo": "int",
-    "fila": 22,
+    "fila": 44,
     "nombre": "a",
     "valor": {
       "tipo": "double",
@@ -146,13 +247,16 @@
   },
   {
     "tipo": "char",
-    "fila": 27,
+    "fila": 49,
     "nombre": "z",
-    "valor": "a"
+    "valor": {
+      "tipo": "char",
+      "valor": "a"
+    }
   },
   {
     "tipo": "int",
-    "fila": 43,
+    "fila": 65,
     "nombre": "a",
     "valor": {
       "tipo": "double",
@@ -161,7 +265,7 @@
   },
   {
     "tipo": "double",
-    "fila": 45,
+    "fila": 67,
     "nombre": "j",
     "valor": {
       "tipo": "double",
@@ -170,7 +274,7 @@
   },
   {
     "tipo": "int",
-    "fila": 53,
+    "fila": 75,
     "nombre": "a",
     "valor": {
       "tipo": "double",

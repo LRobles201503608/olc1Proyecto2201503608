@@ -310,9 +310,16 @@ const API ={
 		return {
 			instruccion: a
 		}
-    },
+	},
+	astIfC(ifs:any){
+		var a={
+			tipo:INSTRUCCION.IF,
+			IF:ifs
+		}
+		return a;
+	},
     astIf: function (condicion:any, content:any) {
-		return {
+		return {		
 			condicion: condicion,
 			sentencias: content
 		}

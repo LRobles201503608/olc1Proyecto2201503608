@@ -21,11 +21,15 @@
                     <div id="myTabContent" class="tab-content">
                       <div class="tab-pane fade active show" id="translate">
                         <div class="form-group">
+                          <input type="file"  multiple="multiple" (change)="change($event.target.files)"class="btn btn-primary">
                           <textarea name="Descripcion" [(ngModel)]="Code.text" placeholder="Codigo C#" rows=10 class="form-control" ></textarea>
-                          <textarea name="Descripcion" placeholder="Codigo Python" rows=10 class="form-control"></textarea>
+                          <textarea name="Descripcion" placeholder="Codigo Python" rows=10 class="form-control">{{traduccion}}</textarea>
                         </div>
                         <div class="form-group">
                           <button type="button" class="btn btn-primary" (click)="ALectura()">ANALIZAR</button>
+                        </div>
+                        <div class="form-group">
+                          <button type="button" class="btn btn-primary" (click)="iniciarRecorrido()">C#->PY</button>
                         </div>
                         <div class="form-group">
                           <textarea name="Descripcion" placeholder="JSON AST" rows=7 class="form-control">{{convertido}}</textarea>
@@ -61,6 +65,10 @@
                         </div>
                         <div class="form-group">
                           <textarea name="Descripcion" placeholder="JSON" rows=10 class="form-control">{{convertido2}}</textarea>
+
+                        </div>
+                        <div class="form-group">
+                          <ngx-json-viewer [json]="datas"[expanded]="false"></ngx-json-viewer>
                         </div>
                       </div>
                     </div>
